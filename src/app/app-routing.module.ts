@@ -6,10 +6,11 @@ import { RepositoryComponent } from './repository/repository.component';
 import { UserComponent } from './user/user.component';
 
 const routes: Routes = [
-  {path:'home-page', component: HomePageComponent},
+  {path:'homepage', component: HomePageComponent},
   {path:'user',component:UserComponent},
-  {path:'Repository', component:RepositoryComponent},
+  {path:'repository', component:RepositoryComponent},
   { path:'**', component:NotFoundComponent},
+  
   { path: '', redirectTo:"/home-page", pathMatch:"full"},
 ];
 
