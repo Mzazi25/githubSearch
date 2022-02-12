@@ -1,3 +1,5 @@
 export class Repository {
-    constructor(public homePage: string, public description:string, public userName: sting)
+    constructor(public dayCreated: Date, public description: string,
+        public homepage: string, public html_url: string) {
+    }
 }
