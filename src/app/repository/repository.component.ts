@@ -10,9 +10,9 @@ import { UserService } from '../user-service/user.service';
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
-  public myUser:any=[];
-  public repos:any=[];
-  public username: string = "";
+  public myRepos: any;
+  public repoName: string = "";
+  public repository: any = [];
   constructor(private userservice:UserService) { }
 
   APIRequest() {
@@ -28,19 +28,22 @@ export class RepositoryComponent implements OnInit {
     })
     return promise
   }
-  findUser(){
-    this.userservice.updateUser(this.username);
-    this.userservice.getUserInfo().subscribe((response: any) =>{
-      this.myUser = response;
+  findRepository(){
+    this.userservice.updateRepo(this.repoName);
+    this.myRepos=this.userservice.searchRepo().subscribe((response: any) =>{
+      this.myRepos = response;
   
     });
     this.userservice.getUserRepo().subscribe((myRepo: any) =>{
-      this.repos = myRepo;
-      console.log(myRepo);
+      this.myRepos = ["items"];
     });
   }
-  ngOnInit(): void{
+  ngOnInit(): void {
     
+     this.myRepos= this.userservice.searchRepo().subscribe((data)=>{
+        this.myRepos = data as string[];
+      });
+
   }
 
 }

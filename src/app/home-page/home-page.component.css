@@ -1,0 +1,17 @@
+.body {
+    background-image: url(../../assets/random.jpeg);
+    background-position: center;
+    /* background-attachment: fixed; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.hero{
+    text-align: center;
+    padding:20rem;
+    /* background-image: url(../../assets/images/Wine.jpeg); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    padding-bottom: 220px;
+    color:white;
+}

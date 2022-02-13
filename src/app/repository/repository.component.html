@@ -1,3 +1,52 @@
-<div>
-	<h1>Test</h1>
+<form action="" class="search-form">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="repository" name="repository" (keyup)="findRepository()">
+	</div>
+</form>
+<div *ngIf="myRepos">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+      {{myRepos.name}} <small>({{myRepos.login}})</small>
+			<span *ngIf="myRepos.company">, Works at {{myRepos.company}}</span>
+			{{myRepos.location}}
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<img src="{{myRepos.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
+				</div>
+				<div class="col-sm-5">
+					<ul class="list-group">
+						<li class="list-group-item" *ngIf="myRepos.bio">{{myRepos.bio}}</li>
+						<li class="list-group-item" *ngIf="myRepos.hireable">Available for hire</li>
+						<li class="list-group-item" *ngIf="myRepos.blog"><a href="{{myRepos.blog}}" target="_blank">{{myRepos.blog}}</a></li>
+						<li class="list-group-item" *ngIf="myRepos.email"><a href="emailto:{{myRepos.email}}">{{myRepos.email}}</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<div>
+						<p>
+							<span class="label label-default">{{myRepos.followers}} Followers</span>
+  
+							<span class="label label-primary">Following {{myRepos.following}}</span>
+							<span class="label label-success">{{myRepos.public_gists}} Gists</span>
+							<span class="label label-info">{{myRepos.public_repos}} Repositories</span>
+						</p>
+						<p><a href="{{myRepos.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Repositories</h3>
+							</div>
+							<div class="panel-body" *ngFor="let repo of repository">
+								<p class="clearfix">
+									{{repo.name}} <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm btn-warning pull-right">View my Projects</a>
+								</p>
+								<p>{{repo.description}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
