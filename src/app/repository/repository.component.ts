@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserRequestService } from '../user-http/user-request.service';
-import { Repository } from '../repository';
-import { HttpClient } from '@angular/common/http';
+import { UserService } from '../user-service/user.service';
 
 
 
@@ -12,26 +10,38 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./repository.component.css']
 })
 export class RepositoryComponent implements OnInit {
+  public myRepos: any;
+  public repoName: string = "";
+  public repository: any = [];
+  constructor(private userservice:UserService) { }
 
-  public githubname :any= [];
-  public description:any=[];
-  public homepage:any=[];
-  public html_url:any=[];
-  repository!: Repository;
+  APIRequest() {
+    let promise = new Promise((resolve, reject) => {
+      this.userservice.searchRepo().subscribe((data) => {
+        if (data) {
+          resolve(data as string[]);
+        }
+        else {
+          reject("nothing")
+        }
+      })
+    })
+    return promise
+  }
+  findUser(){
+    this.userservice.updateRepo(this.myRepos);
+    this.myRepos= this.userservice.searchRepo().subscribe((data: any)=>{
+      this.myRepos = data ['items'];
+      console.log(data);
+    });
+  }
+  ngOnInit(): void {
+   
+     this.myRepos= this.myRepos.searchRepo().subscribe((data: string[])=>{
+        this.myRepos = data as string[];
+        console.log(data);
+      });
 
-  constructor(private http:HttpClient) { }
-  ngOnInit() {
-
-    interface ApiResponse{
-      githubname: string,
-      description:string;
-      homepage:string;
-      html_url:string
-    }
-
-    this.http.get<ApiResponse>("https://api.github.com/users/Mzazi25?access_token=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").subscribe(data=>// Succesful API request
-    // Succesful API request
-    this.repository = new Repository(data.githubname, data.description, data.homepage, data.html_url))
   }
 
 }

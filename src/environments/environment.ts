@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  clientSecret: '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'
+  clientSecret: 'b610bef8f751a693115f45f950ce2dbf43e20e00'
 };
 
 /*

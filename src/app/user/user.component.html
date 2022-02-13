@@ -3,11 +3,8 @@
       <h1 class="display-4 text-center">SEARCH ANY USER</h1>
       <hr class="my-4">
       <p class="lead text-center">An Angular app that let's you search any Repository from the world of computing!</p>
-      <input type="text" class="display-4 text-center" placeholder="Search User......">
-      <button class="btn btn-success"></button>
-  
-  <div class="container">
-    <p>Lorem ipsum dolor sit amet.</p>
+      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search Github Username"
+                [(ngModel)]='userName' name="username" (keyup)="findUser()">
   <div class="row">
     <blockquote class="blockquote text-center">
       <p class="mb-0">{{user.userName}}</p>

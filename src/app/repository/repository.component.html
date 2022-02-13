@@ -3,14 +3,7 @@
     <h1 class="display-4 text-center">SEARCH ANY REPOSITORY</h1>
     <hr class="my-4">
     <p class="lead text-center">An Angular app that let's you search any Repository from the world of computing!</p>
-    <input type="text" class="display-4 text-center" placeholder="Search Repo......">
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Think of a Repository Name" [(ngModel)]='repository' name="repository" (keyup)="findUser()">
     <button class="btn btn-success"></button>
 
-    <div class="row">
-      <blockquote class="blockquote text-center">
-        <p class="mb-0">{{repository.description}}</p>
-        <footer class="blockquote-footer"><cite>{{repository.homepage}}</cite></footer>
-      </blockquote>
-    </div>
-  </div>
-</div>
+  
