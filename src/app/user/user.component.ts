@@ -11,21 +11,33 @@ import { User } from '../user';
   styleUrls: ['./user.component.css']
 })
 export class UserComponent implements OnInit {
-  public userName:any= [];
-  public userRepo:any=[];
-  user!: User;
-
+  public myUser:any=[];
+  public repos:any=[];
+  public username: string = "";
   constructor(private userservice:UserService) { }
 
+  APIRequest() {
+    let promise = new Promise((resolve, reject) => {
+      this.userservice.searchRepo().subscribe((data) => {
+        if (data) {
+          resolve(data as string[]);
+        }
+        else {
+          reject("nothing")
+        }
+      })
+    })
+    return promise
+  }
   findUser(){
-    this.userservice.updateUser(this.userName);
+    this.userservice.updateUser(this.username);
     this.userservice.getUserInfo().subscribe((response: any) =>{
-      this.userName = response;
-      console.log(response);
+      this.myUser = response;
+  
     });
-    this.userservice.getUserRepo().subscribe((userRepo: any) =>{
-      this.userRepo = userRepo;
-      console.log(userRepo);
+    this.userservice.getUserRepo().subscribe((myRepo: any) =>{
+      this.repos = myRepo;
+
     });
   }
   ngOnInit(): void{

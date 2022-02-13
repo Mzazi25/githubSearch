@@ -1,14 +1,52 @@
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="display-4 text-center">SEARCH ANY USER</h1>
-      <hr class="my-4">
-      <p class="lead text-center">An Angular app that let's you search any Repository from the world of computing!</p>
-      <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Search Github Username"
-                [(ngModel)]='userName' name="username" (keyup)="findUser()">
-  <div class="row">
-    <blockquote class="blockquote text-center">
-      <p class="mb-0">{{user.userName}}</p>
-      <footer class="blockquote-footer"><cite>{{user.userRepo}}</cite></footer>
-    </blockquote>
-  </div>
-  <div>
+<form action="" class="search-form">
+	<div class="form-group">
+		<input type="text" class="form-control" placeholder="Search git users with username" [(ngModel)]="username" name="username" (keyup)="findUser()">
+	</div>
+</form>
+<div *ngIf="myUser">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			{{myUser.name}} <small>({{myUser.login}})</small>
+			<span *ngIf="myUser.company">, Works at {{myUser.company}}</span>
+			{{myUser.location}}
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-sm-3">
+					<img src="{{myUser.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
+				</div>
+				<div class="col-sm-5">
+					<ul class="list-group">
+						<li class="list-group-item" *ngIf="myUser.bio">{{myUser.bio}}</li>
+						<li class="list-group-item" *ngIf="myUser.hireable">Available for hire</li>
+						<li class="list-group-item" *ngIf="myUser.blog"><a href="{{myUser.blog}}" target="_blank">{{myUser.blog}}</a></li>
+						<li class="list-group-item" *ngIf="myUser.email"><a href="emailto:{{myUser.email}}">{{myUser.email}}</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<div>
+						<p>
+							<span class="label label-default">{{myUser.followers}} Followers</span>
+  
+							<span class="label label-primary">Following {{myUser.following}}</span>
+							<span class="label label-success">{{myUser.public_gists}} Gists</span>
+							<span class="label label-info">{{myUser.public_repos}} Repositories</span>
+						</p>
+						<p><a href="{{myUser.html_url}}" target="_blank" class="btn btn-success btn-sm">View profile on github</a></p>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Repositories</h3>
+							</div>
+							<div class="panel-body" *ngFor="let repo of repos">
+								<p class="clearfix">
+									{{repo.name}} <a href="{{repo.html_url}}" target="_blank" class="btn btn-sm btn-warning pull-right">View my Projects</a>
+								</p>
+								<p>{{repo.description}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

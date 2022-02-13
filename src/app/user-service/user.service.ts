@@ -16,22 +16,20 @@ export class UserService {
 
   constructor(private http:HttpClient) { 
     console.log("profile service is now ready");
-    this.username = 'mzazi25'; //default profile
+    this.username = 'mzazi25'; 
 
-    console.log ("repos");
-    this.repoName = 'Akan-Name';
+    this.repoName = 'Delani-studio';
   }
-  //function to collect data from github
+  
   getUserInfo(){
     return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" + this.clientId + "&client_secret=" + environment.clientSecret)
-    // use pipe to invoke the map method  so that data collected can be in form of observables
     .pipe(map(data=>{
       return data;
     }));
   }
   getUserRepo(){
     return this.http.get("https://api.github.com/users/" + this.username + "/repos?client_id=" + this.clientId + "&client_secret=" + environment.clientSecret)
-    // use pipe to invoke the map method  so that data collected can be in form of observables
+    
     .pipe(map(data=>{
       return data;
     }));
