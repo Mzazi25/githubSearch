@@ -16,7 +16,7 @@ export class UserService {
 
   constructor(private http:HttpClient) { 
     console.log("profile service is now ready");
-    this.username = 'enockabere'; //default profile
+    this.username = 'mzazi25'; //default profile
 
     console.log ("repos");
     this.repoName = 'Akan-Name';
