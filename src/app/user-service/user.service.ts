@@ -22,20 +22,20 @@ export class UserService {
   }
   
   getUserInfo(){
-    return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" + this.clientId + "&client_secret=" + environment.clientSecret)
+    return this.http.get("https://api.github.com/users/" + this.username + "?client_id=" + this.clientId + "&client_secret=" + environment.apiInfo)
     .pipe(map(data=>{
       return data;
     }));
   }
   getUserRepo(){
-    return this.http.get("https://api.github.com/users/" + this.username + "/repos?client_id=" + this.clientId + "&client_secret=" + environment.clientSecret)
+    return this.http.get("https://api.github.com/users/" + this.username + "/repos?client_id=" + this.clientId + "&client_secret=" + environment.apiInfo)
     
     .pipe(map(data=>{
       return data;
     }));
   }
   searchRepo(){
-    return this.http.get("https://api.github.com/search/repositories?q=" + this.repoName + "&client_secret=" + environment.clientSecret) 
+    return this.http.get("https://api.github.com/search/repositories?q=" + this.repoName + "&client_secret=" + environment.apiInfo) 
     .pipe(map(data=>{
       return data;
     }));
