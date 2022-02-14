@@ -11,6 +11,7 @@ import { RepositoryComponent } from './repository/repository.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { UserComponent } from './user/user.component';
+import { GitpipePipe } from './gitpipe.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserComponent } from './user/user.component';
     RepositoryComponent,
     NavbarComponent,
     NotFoundComponent,
-    UserComponent
+    UserComponent,
+    GitpipePipe
   ],
   imports: [
     BrowserModule,
