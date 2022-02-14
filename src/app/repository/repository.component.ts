@@ -30,18 +30,19 @@ export class RepositoryComponent implements OnInit {
   }
   findRepository(){
     this.userservice.updateRepo(this.repoName);
-    this.myRepos=this.userservice.searchRepo().subscribe((response: any) =>{
-      this.myRepos = response;
-  
-    });
-    this.userservice.getUserRepo().subscribe((myRepo: any) =>{
-      this.myRepos = ["items"];
+    this.myRepos= this.userservice.searchRepo().subscribe((data: any)=>{
+      this.myRepos = data ['items'];
+      console.log(data);
     });
   }
   ngOnInit(): void {
-    
+    // this.myRepos = this.APIRequest()
+    // console.log(this.myRepos)
+    // this.myRepos = this.APIRequest();
+    // console.log(this.myRepos['__zone_symbol__value']);
      this.myRepos= this.userservice.searchRepo().subscribe((data)=>{
         this.myRepos = data as string[];
+        console.log(data);
       });
 
   }
